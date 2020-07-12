@@ -216,16 +216,13 @@ var data = [
   });
  
   Highcharts.mapChart('container', {
-      
       chart: {
       map: 'countries/us/us-all',
       borderWidth: 1
-      
     },
     title: {
       text: ''
     },
-
     exporting: {
       sourceWidth: 600,
       sourceHeight: 500
@@ -233,7 +230,6 @@ var data = [
     mapNavigation: {
       enabled: true
     },
-
     series: [{
       allowPointSelect:true,
       animation: true,
@@ -250,82 +246,79 @@ var data = [
           },
           select: {
             color: 'grey'
-
           }
       },
       events: {
        click:function(event){
-         userVsMachine(event.point.name); 
+         handleUserSelection(event.point.name); 
         },
       },
       name: 'Selected State',
       tooltip: {
-        
         //pointFormat: '{point.code}: {point.name}'
         pointFormat: '?'
-        
       }
     }]
   });
 
-var count=0; 
+var userTrials = 0;
 newState();
 var guessState;
 
-function setGuessesMessageToEmptyString(){
-  document.getElementById("message").innerHTML=" ";
-  document.getElementById("horizontalStripe").style.background="grey";
+function setGuessesMessageToEmptyString() {
+    document.getElementById("message").innerHTML=" ";
+    document.getElementById("horizontalStripe").style.background="grey";
 }
 
-function successMessage(){
-  document.getElementById("message").innerHTML=" "; 
+function successMessage() {
+    document.getElementById("message").innerHTML=" "; 
 }
 
-function failMessage(){
-  document.getElementById("failMessage").innerHTML=" ";
+function failMessage() {
+    document.getElementById("failMessage").innerHTML=" ";
 }
 
-function newState(){
-  guessState= stateToBeGuess(); 
-  document.getElementById("stateToGuess").innerHTML= guessState; 
+function newState() {
+    guessState= stateToBeGuess(); 
+    document.getElementById("stateToGuess").innerHTML= guessState; 
 }
 
-function userVsMachine(stateSelected){
-if(count <=2) {
-      if(stateSelected==guessState){
-          console.log("yeah");
-          document.getElementById("horizontalStripe").style.background="green";
-           document.getElementById("message").innerHTML="YOU GUESSED IT!";
-          setTimeout(setGuessesMessageToEmptyString,2000);
-          setTimeout(newState,1000);
+function handleUserSelection(stateSelected) {
+    var userTrials = 2;
+    if (userTrials <= userTrials) {
+          if (stateSelected == guessState) {
+              document.getElementById("horizontalStripe").style.background="green";
+              document.getElementById("message").innerHTML="YOU GUESSED IT!";
+              setTimeout(setGuessesMessageToEmptyString, 2000);
+              setTimeout(newState, 1000);
+        
+          } 
+          else {
+                document.getElementById("horizontalStripe").style.background="RED";
+                document.getElementById("message").innerHTML="TRY AGAIN!";
+                setTimeout( setGuessesMessageToEmptyString, 2000);
+                userTrials+=1;
+          }
+    }
     
-      } 
-      else{
-            document.getElementById("horizontalStripe").style.background="RED";
-            document.getElementById("message").innerHTML="TRY AGAIN!";
-            setTimeout( setGuessesMessageToEmptyString,2000);
-            count+=1;
-            console.log(count);
+    var maxNumberOfTrials = 3;
+    if (userTrials === maxNumberOfTrials) {
+        setTimeout(newState, 1500);
+        userTrials = 0; 
       }
 }
-  
-if(count===3) {
-    setTimeout(newState,1500);
-    count=0; 
-  }
-}
 
-function stateToBeGuess(){
-    var maxNum=50; 
-    var randomState= Math.floor(Math.random()*Math.floor(maxNum)); 
-    var stateToBeGuessed= data[randomState].name;  
-    
+function stateToBeGuess() {
+    var maxNum = 50; 
+    var randomState = Math.floor(Math.random() * Math.floor(maxNum)); 
+    var stateToBeGuessed = data[randomState].name;  
+
     return stateToBeGuessed; 
 }
 
-document.getElementById("reset").addEventListener("click", function(){
-  newState();
-  })
+document.getElementById("reset").addEventListener("click", function() { 
+    newState();
+})
 
 
 
