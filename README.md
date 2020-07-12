@@ -10,4 +10,4 @@
 * HTML
 * CSS
 
-Want to have fun? [Play Now](https://www.josemunguia/projects/guess-states-game/index/html)
+Want to have fun? [Play Now](https://www.josemunguia.com/projects/guess-states-game/index.html)
