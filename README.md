@@ -1,6 +1,6 @@
 # Learn The States Game
 * Small web-based application game to learn the U.S states.
-* Game responds to the user whether respond is right or wrong.
+* Game responds to the user whether response is right or wrong.
 * User learns the states while having fun playing the game.
 
 ## Technologies/Tools Used
