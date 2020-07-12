@@ -9,3 +9,5 @@
 * JSON
 * HTML
 * CSS
+
+Want to have fun? [Play Now](https://www.josemunguia/projects/guess-states-game/index/html)
