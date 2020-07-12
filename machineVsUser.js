@@ -284,8 +284,8 @@ function newState() {
 }
 
 function handleUserSelection(stateSelected) {
-    var userTrials = 2;
-    if (userTrials <= userTrials) {
+    var maxNumberOfTrials = 3;
+    if (userTrials < maxNumberOfTrials) {
           if (stateSelected == guessState) {
               document.getElementById("horizontalStripe").style.background="green";
               document.getElementById("message").innerHTML="YOU GUESSED IT!";
@@ -301,7 +301,6 @@ function handleUserSelection(stateSelected) {
           }
     }
     
-    var maxNumberOfTrials = 3;
     if (userTrials === maxNumberOfTrials) {
         setTimeout(newState, 1500);
         userTrials = 0; 
